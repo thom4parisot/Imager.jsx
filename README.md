@@ -59,6 +59,8 @@ React.render(<ResponsiveImage src="http://placehold.it/{width}" />, container);
 </script>
 ```
 
+Clone the project and open the [demo.html page](demo/index.html) for a live example.
+
 # License
 
     The MIT License (MIT)
