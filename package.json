@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Reactive responsive images for desktop and mobiles browsers.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oncletom/Imager.jsx.git"
+  },
   "scripts": {
     "build": "npm run build-vendor && npm run build-bundle",
     "build-vendor": "browserify -r react -r lodash.debounce -o dist/vendor.js",
@@ -33,7 +37,6 @@
   "devDependencies": {
     "browserify": "^6.3.2",
     "lodash.debounce": "^2.4.1",
-    "node-jsx": "^0.12.0",
     "reactify": "^0.17.1",
     "watchify": "^2.1.1"
   }

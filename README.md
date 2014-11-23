@@ -17,7 +17,7 @@ The factory associates an [Imager.js](https://github.com/BBC-News/Imager.js) beh
 var Imager = require('imager.jsx');
 
 var ResponsiveImage = Imager({
-  availableWidths: [ 333, 444, 555 ],
+  availableWidths: [333, 444, 555],
   availablePixelRatios: [1, 1.3, 2]
 });
 ```
@@ -45,17 +45,17 @@ The only mandatory attribute is `src`, the equivalent of [Imager.js `data-src` a
 <div style="max-width: 800px; " class="container"></div>
 
 <script>
+/** @jsx React.DOM */
+
 var Imager = require('imager.jsx');
 
-// Imager.js configuration
 var ResponsiveImage = Imager({
   availableWidths: [200, 260, 320, 600]
 });
 
 var container = document.querySelector('.container');
 
-// component rendering
-React.render(<ResponsiveImage src="http://placehold.it/{width}" alt="alternative text" />, container);
+React.render(<ResponsiveImage src="http://placehold.it/{width}" />, container);
 </script>
 ```
 
