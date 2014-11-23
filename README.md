@@ -32,7 +32,7 @@ The React component is used to render a responsive image (an `<img />` HTML elem
 <ResponsiveImage
  src="http://placehold.it/{width}"
  className="responsive-image"
- alt="alternative text" />,
+ alt="alternative text" />
 ```
 
 The only mandatory attribute is `src`, the equivalent of [Imager.js `data-src` attribute](https://github.com/BBC-News/Imager.js#data-src).
