@@ -6,7 +6,7 @@ var Imager = require('imager.js');
 /**
  * Imager.jsx Component Factory
  *
- * @param {ImagerConfig|Object} config Imager.js configuration object
+ * @param {ImagerConfig|Object=} config Imager.js configuration object
  * @returns {ReactComponent}
  */
 module.exports = function (config) {
@@ -42,12 +42,12 @@ module.exports = function (config) {
         className: imgr.className,
         src: imgr.gif.src,
         alt: imgr.gif.src
-      }
+      };
     },
 
     getInitialState: function () {
       return {
-        width: null
+        width: undefined
       }
     },
 
