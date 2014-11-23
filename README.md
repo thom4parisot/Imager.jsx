@@ -1,8 +1,8 @@
 # Imager.jsx
 
-> A React component to use responsive images in desktop and mobiles browsers. Featuring [Imager.js](https://github.com/BBC-News/Imager.js)!
+> A React component for responsive images in desktop and mobile browsers. Featuring [Imager.js](https://github.com/BBC-News/Imager.js)!
 
-React  is used for the initial component rendering.
+React is used for the initial component rendering.
 Its batched state update mechanism is then used to handle multiple image size at once, to avoid layout thrashing.
 
 # Usage

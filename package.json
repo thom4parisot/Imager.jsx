@@ -1,7 +1,7 @@
 {
   "name": "imager.jsx",
   "version": "1.0.0",
-  "description": "Reactive responsive images for desktop and mobiles browsers.",
+  "description": "A React component for responsive images in desktop and mobile browsers. Featuring Imager.js.",
   "main": "index.js",
   "repository": {
     "type": "git",
