@@ -28,7 +28,7 @@
   function renderImages(){
     var containers = document.querySelectorAll('.container');
     for (var i = 0; i < containers.length; i++){
-      React.render(<ResponsiveImage src="http://placehold.it/{width}" alt="alternative text" />, containers[i]);
+      React.render(<ResponsiveImage className="test" src="http://placehold.it/{width}" alt="alternative text" />, containers[i]);
     }
   }
 

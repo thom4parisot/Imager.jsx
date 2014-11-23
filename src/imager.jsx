@@ -3,62 +3,74 @@
 var React = require('react');
 var Imager = require('imager.js');
 
-module.exports = function(config){
+/**
+ * Imager.jsx Component Factory
+ *
+ * @param {ImagerConfig|Object} config Imager.js configuration object
+ * @returns {ReactComponent}
+ */
+module.exports = function (config) {
   var imagerConfig = config || {};
 
   imagerConfig.onResize = false;
   imagerConfig.lazyload = false;
   imagerConfig.onImagesReplaced = function noop(){};
 
+  // Where the magic happens.
+  // A 'blind' Imager instance shared by all the rendered components.
   var imgr = new Imager([], imagerConfig);
 
   return React.createClass({
     propTypes: {
+      // mandatory props
       src: React.PropTypes.string.isRequired,
-      alt: React.PropTypes.string
+      // optional props
+      alt: React.PropTypes.string,
+      className: React.PropTypes.string
     },
 
-    componentDidMount: function(){
+    componentDidMount: function () {
       this.refreshImageWidth();
     },
 
-    componentDidUpdate: function(){
+    componentDidUpdate: function () {
       this.refreshImageWidth();
     },
 
-    getDefaultProps: function(){
+    getDefaultProps: function () {
       return {
-	src: imgr.gif.src,
-	alt: imgr.gif.src
+        className: imgr.className,
+        src: imgr.gif.src,
+        alt: imgr.gif.src
       }
     },
 
-    getInitialState: function(){
+    getInitialState: function () {
       return {
-	width: null
+        width: null
       }
     },
 
-    getImageSrc: function(){
-      if (!this.state.width){
-	return imgr.gif.src;
+    getImageSrc: function () {
+      if (!this.state.width) {
+        return imgr.gif.src;
       }
 
       return imgr.changeImageSrcToUseNewImageDimensions(this.props.src, this.state.width);
     },
 
-    refreshImageWidth: function(){
+    refreshImageWidth: function () {
       var width = imgr.determineAppropriateResolution(this.getDOMNode());
 
       if (width !== this.state.width) {
-	this.setState({ width: width });
+        this.setState({ width: width });
       }
     },
 
-    render: function(){
+    render: function () {
       var imageSrc = this.getImageSrc();
 
-      return (<img src={imageSrc} data-src={this.props.src} alt={this.props.alt} />);
+      return (<img src={imageSrc} className={this.props.className} data-src={this.props.src} alt={this.props.alt} />);
     }
   });
 };
