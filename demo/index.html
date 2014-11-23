@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Imager.jsx Demo</title>
+</head>
+<body>
+<main>
+  <div style="max-width: 800px;" class="container"></div>
+</main>
+
+<script src="../node_modules/react/dist/JSXTransformer.js"></script>
+<script src="../dist/vendor.js"></script>
+<script src="../dist/bundle.js"></script>
+<script type="text/jsx">
+  /** @jsx React.DOM */
+  var React = require('react');
+  var Imager = imager.jsx;
+
+  // Imager.js configuration
+  var ResponsiveImage = Imager({
+    availableWidths: [200, 260, 320, 600]
+  });
+
+  var container = document.querySelector('.container');
+
+  // component rendering
+  React.render(<ResponsiveImage src="http://placehold.it/{width}" alt="alternative text" />, container);
+</script>
+</body>
+</html>

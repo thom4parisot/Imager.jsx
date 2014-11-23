@@ -1,0 +1,38 @@
+{
+  "name": "imager.jsx",
+  "version": "1.0.0",
+  "description": "Reactive responsive images for desktop and mobiles browsers.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-vendor && npm run build-bundle",
+    "build-vendor": "browserify -r react -o dist/vendor.js",
+    "build-bundle": "browserify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "keywords": [
+    "imager",
+    "bbc",
+    "react",
+    "reactive",
+    "responsive",
+    "images"
+  ],
+  "author": "Thomas Parisot (https://oncletom.io)",
+  "license": "MIT",
+  "dependencies": {
+    "imager.js": "^0.3.2",
+    "react": "^0.12.1"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.2",
+    "node-jsx": "^0.12.0",
+    "reactify": "^0.17.1",
+    "watchify": "^2.1.1"
+  }
+}
