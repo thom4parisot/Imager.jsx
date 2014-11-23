@@ -2,8 +2,8 @@
 
 > A React component to use responsive images in desktop and mobiles browsers. Featuring [Imager.js](https://github.com/BBC-News/Imager.js)!
 
-React rendering is used for the initial component rendering.
-Its batch state mechanism is
+React  is used for the initial component rendering.
+Its batched state update mechanism is then used to handle multiple image size at once, to avoid layout thrashing.
 
 # Usage
 
