@@ -5,6 +5,21 @@
 React is used for the initial component rendering.
 Its batched state update mechanism is then used to handle multiple image size at once, to avoid layout thrashing.
 
+# Install
+
+*Imager.jsx* is a browserifiable Node module.
+
+```bash
+npm i --save imager.jsx
+```
+
+If you want to generate a static artifact, clone the repository and run the following commands:
+
+```bash
+npm install
+npm run build
+```
+
 # Usage
 
 *Imager.jsx* is a two-steps use.
