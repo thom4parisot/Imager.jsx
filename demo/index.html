@@ -2,10 +2,13 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Imager.jsx Demo</title>
+  <link rel="stylesheet" href="../node_modules/imager.js/demos/default/Assets/Styles/base.css">
 </head>
 <body>
-<main>
+<main class="constrained-images">
+  <div style="max-width: 400px;" class="container"></div>
   <div style="max-width: 800px;" class="container"></div>
 </main>
 
@@ -15,17 +18,22 @@
 <script type="text/jsx">
   /** @jsx React.DOM */
   var React = require('react');
+  var debounce = require('lodash.debounce');
   var Imager = imager.jsx;
 
   // Imager.js configuration
-  var ResponsiveImage = Imager({
-    availableWidths: [200, 260, 320, 600]
-  });
-
-  var container = document.querySelector('.container');
+  var ResponsiveImage = Imager();
 
   // component rendering
-  React.render(<ResponsiveImage src="http://placehold.it/{width}" alt="alternative text" />, container);
+  function renderImages(){
+    var containers = document.querySelectorAll('.container');
+    for (var i = 0; i < containers.length; i++){
+      React.render(<ResponsiveImage src="http://placehold.it/{width}" alt="alternative text" />, containers[i]);
+    }
+  }
+
+  window.addEventListener('load', renderImages);
+  window.addEventListener('resize', debounce(renderImages, 100));
 </script>
 </body>
 </html>

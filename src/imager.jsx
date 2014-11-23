@@ -1,11 +1,15 @@
-/** @jsx React.DOM */
-
 'use strict';
 
 var React = require('react');
 var Imager = require('imager.js');
 
-module.exports = function(imagerConfig){
+module.exports = function(config){
+  var imagerConfig = config || {};
+
+  imagerConfig.onResize = false;
+  imagerConfig.lazyload = false;
+  imagerConfig.onImagesReplaced = function noop(){};
+
   var imgr = new Imager([], imagerConfig);
 
   return React.createClass({
@@ -15,9 +19,11 @@ module.exports = function(imagerConfig){
     },
 
     componentDidMount: function(){
-      var node = this.getDOMNode();
+      this.refreshImageWidth();
+    },
 
-      this.setState({ width: imgr.determineAppropriateResolution(node) });
+    componentDidUpdate: function(){
+      this.refreshImageWidth();
     },
 
     getDefaultProps: function(){
@@ -39,6 +45,14 @@ module.exports = function(imagerConfig){
       }
 
       return imgr.changeImageSrcToUseNewImageDimensions(this.props.src, this.state.width);
+    },
+
+    refreshImageWidth: function(){
+      var width = imgr.determineAppropriateResolution(this.getDOMNode());
+
+      if (width !== this.state.width) {
+	this.setState({ width: width });
+      }
     },
 
     render: function(){
