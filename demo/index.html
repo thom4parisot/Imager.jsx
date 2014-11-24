@@ -22,7 +22,7 @@
   var Imager = imager.jsx;
 
   // Imager.js configuration
-  var ResponsiveImage = Imager();
+  var ResponsiveImage = Imager({ onResize: true });
 
   // component rendering
   function renderImages(){
@@ -33,7 +33,6 @@
   }
 
   window.addEventListener('load', renderImages);
-  window.addEventListener('resize', debounce(renderImages, 100));
 </script>
 </body>
 </html>

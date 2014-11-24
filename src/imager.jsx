@@ -11,6 +11,8 @@ var Imager = require('imager.js');
  */
 module.exports = function (config) {
   var imagerConfig = config || {};
+  var imagesCache = [];
+  var onResize = config.onResize || false;
 
   imagerConfig.onResize = false;
   imagerConfig.lazyload = false;
@@ -19,6 +21,14 @@ module.exports = function (config) {
   // Where the magic happens.
   // A 'blind' Imager instance shared by all the rendered components.
   var imgr = new Imager([], imagerConfig);
+
+  if (onResize) {
+    Imager.addEvent(window, 'resize', Imager.debounce(function(){
+      Imager.applyEach(imagesCache, function(component){
+        component.refreshImageWidth();
+      });
+    }, 250));
+  }
 
   return React.createClass({
     propTypes: {
@@ -31,6 +41,14 @@ module.exports = function (config) {
 
     componentDidMount: function () {
       this.refreshImageWidth();
+
+      if (onResize) {
+        imagesCache.push(this);
+      }
+    },
+
+    componentWillUnmount: function () {
+      // TBD.
     },
 
     componentDidUpdate: function () {
