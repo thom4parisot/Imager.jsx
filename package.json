@@ -17,7 +17,13 @@
   },
   "browserify": {
     "transform": [
-      ["reactify", { "es6": true, "target": "es5" }]
+      [
+        "reactify",
+        {
+          "es6": true,
+          "target": "es5"
+        }
+      ]
     ]
   },
   "keywords": [
@@ -31,7 +37,7 @@
   "author": "Thomas Parisot (https://oncletom.io)",
   "license": "MIT",
   "dependencies": {
-    "imager.js": "^0.3.2",
+    "imager.js": "^0.4.0",
     "react": "^0.12.1"
   },
   "devDependencies": {
