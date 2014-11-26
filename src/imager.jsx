@@ -47,8 +47,17 @@ module.exports = function (config) {
       }
     },
 
+    /**
+     * Removes the unmounted component from the cache.
+     */
     componentWillUnmount: function () {
-      // TBD.
+      var self = this;
+
+      if (onResize) {
+        imagesCache = Imager.applyEach(imagesCache, function(component){
+          return component === self ? null : component;
+        }).filter(function(c){ return c; });
+      }
     },
 
     componentDidUpdate: function () {

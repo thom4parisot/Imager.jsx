@@ -8,6 +8,9 @@
 </head>
 <body>
 <main class="constrained-images">
+  <button id="remove-last-image-btn" type="button">Remove last image</button>
+  <button id="render-images" type="button">Add/update images</button>
+  <hr/>
   <div style="max-width: 400px;" class="container"></div>
   <div style="max-width: 800px;" class="container"></div>
 </main>
@@ -33,6 +36,10 @@
   }
 
   window.addEventListener('load', renderImages);
+  document.querySelector('#render-images').addEventListener('click', renderImages);
+  document.querySelector('#remove-last-image-btn').addEventListener('click', function(){
+    React.unmountComponentAtNode(document.querySelector('.container:last-child'));
+  });
 </script>
 </body>
 </html>
