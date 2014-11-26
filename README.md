@@ -54,27 +54,26 @@ The only mandatory attribute is `src`, the equivalent of [Imager.js `data-src` a
 
 `className` and `alt` are respectively rendered as `class` and `alt` HTML attributes.
 
-# Example
+# Examples
 
-```html
-<div style="max-width: 800px; " class="container"></div>
+Clone the project and open the [demo.html page](demo/index.html) for live examples.
 
-<script>
-/** @jsx React.DOM */
+## `<img />` element
 
-var Imager = require('imager.jsx');
-
-var ResponsiveImage = Imager({
-  availableWidths: [200, 260, 320, 600]
-});
-
-var container = document.querySelector('.container');
-
+```js
 React.render(<ResponsiveImage src="http://placehold.it/{width}" />, container);
 </script>
 ```
 
-Clone the project and open the [demo.html page](demo/index.html) for a live example.
+## `<div style="background-image: ..." />` element
+
+```js
+React.render(<ResponsiveImage src="http://placehold.it/{width}">
+  <h2>Tile title</h2>
+</ResponsiveImage>, container);
+</script>
+```
+
 
 # License
 

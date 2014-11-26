@@ -33,7 +33,8 @@ module.exports = function (config) {
   return React.createClass({
     propTypes: {
       // mandatory props
-      src: React.PropTypes.string.isRequired,
+      src: React.PropTypes.string,
+      'background-src': React.PropTypes.string,
       // optional props
       alt: React.PropTypes.string,
       className: React.PropTypes.string
@@ -83,21 +84,35 @@ module.exports = function (config) {
         return imgr.gif.src;
       }
 
-      return imgr.changeImageSrcToUseNewImageDimensions(this.props.src, this.state.width);
+      return imgr.changeImageSrcToUseNewImageDimensions(this.props.src, this.state.width).replace('{height}', this.state.height);
     },
 
     refreshImageWidth: function () {
-      var width = imgr.determineAppropriateResolution(this.getDOMNode());
+      var node = this.getDOMNode();
+      var height = node.offsetHeight;
+      var width = imgr.determineAppropriateResolution(node);
 
       if (width !== this.state.width) {
-        this.setState({ width: width });
+        this.setState({ width: width, height: height });
       }
     },
 
     render: function () {
       var imageSrc = this.getImageSrc();
 
-      return (<img src={imageSrc} className={this.props.className} data-src={this.props.src} alt={this.props.alt} />);
+      // Background image element
+      if (this.props.children) {
+        var containerStyles = {
+          backgroundImage: 'url("' + imageSrc + '")'
+        };
+
+        return (<div style={containerStyles} className={this.props.className} data-src={this.props.src}>{this.props.children}</div>);
+      }
+      // Image element
+      else {
+        return (<img src={imageSrc} className={this.props.className} data-src={this.props.src} alt={this.props.alt} />);
+
+      }
     }
   });
 };

@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Imager.jsx Demo</title>
   <link rel="stylesheet" href="../node_modules/imager.js/demos/default/Assets/Styles/base.css">
+  <style>
+    body {
+      padding: 2em 0;
+    }
+
+    div.image-replace {
+      background-color: #333;
+      color: #fff;
+
+      font-weight: 100;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
+      line-height: 100%;
+
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 <main class="constrained-images">
@@ -13,6 +31,11 @@
   <hr/>
   <div style="max-width: 400px;" class="container"></div>
   <div style="max-width: 800px;" class="container"></div>
+
+  <hr/>
+
+  <button id="rotate">Rotate</button>
+  <div style="border: 2px solid gray; width: 360px; height: 640px;" class="background-image-container"></div>
 </main>
 
 <script src="../node_modules/react/dist/JSXTransformer.js"></script>
@@ -28,18 +51,43 @@
   var ResponsiveImage = Imager({ onResize: true });
 
   // component rendering
-  function renderImages(){
+  function renderImages() {
     var containers = document.querySelectorAll('.container');
-    for (var i = 0; i < containers.length; i++){
+    var bgContainer = document.querySelector('.background-image-container');
+
+    for (var i = 0; i < containers.length; i++) {
+
       React.render(<ResponsiveImage className="test" src="http://placehold.it/{width}" alt="alternative text" />, containers[i]);
+
     }
+
+    React.render(<ResponsiveImage src="http://placehold.it/{width}x{height}/333">iPhone 5 Cover</ResponsiveImage>, bgContainer);
   }
+
+
+
+
 
   window.addEventListener('load', renderImages);
   document.querySelector('#render-images').addEventListener('click', renderImages);
+
   document.querySelector('#remove-last-image-btn').addEventListener('click', function(){
-    React.unmountComponentAtNode(document.querySelector('.container:last-child'));
+    React.unmountComponentAtNode(document.querySelector('.container:nth-of-type(2)'));
+  });
+
+  document.querySelector('#rotate').addEventListener('click', function(){
+    var el = document.querySelector('.background-image-container');
+    var dimensions = [el.style.width, el.style.height];
+
+    el.style.width = dimensions[1];
+    el.style.height = dimensions[0];
+
+    renderImages();
   });
 </script>
+
+
+
+
 </body>
 </html>
