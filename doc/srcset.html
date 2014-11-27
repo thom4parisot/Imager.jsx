@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>BBC News srcset responsive image</title>
+  <link rel="stylesheet" href="base.css" />
+</head>
+<body>
+
+<div class="responsive-container">
+  <img src="http://ichef.bbci.co.uk/news/270/media/images/79309000/jpg/_79309377_79309376.jpg"
+       srcset="http://ichef.bbci.co.uk/news/96/media/images/79309000/jpg/_79309377_79309376.jpg 96w,http://ichef.bbci.co.uk/news/130/media/images/79309000/jpg/_79309377_79309376.jpg 130w,http://ichef.bbci.co.uk/news/165/media/images/79309000/jpg/_79309377_79309376.jpg 165w,http://ichef.bbci.co.uk/news/200/media/images/79309000/jpg/_79309377_79309376.jpg 200w,http://ichef.bbci.co.uk/news/235/media/images/79309000/jpg/_79309377_79309376.jpg 235w,http://ichef.bbci.co.uk/news/270/media/images/79309000/jpg/_79309377_79309376.jpg 270w,http://ichef.bbci.co.uk/news/304/media/images/79309000/jpg/_79309377_79309376.jpg 304w,http://ichef.bbci.co.uk/news/340/media/images/79309000/jpg/_79309377_79309376.jpg 340w,http://ichef.bbci.co.uk/news/375/media/images/79309000/jpg/_79309377_79309376.jpg 375w,http://ichef.bbci.co.uk/news/410/media/images/79309000/jpg/_79309377_79309376.jpg 410w,http://ichef.bbci.co.uk/news/445/media/images/79309000/jpg/_79309377_79309376.jpg 445w,http://ichef.bbci.co.uk/news/485/media/images/79309000/jpg/_79309377_79309376.jpg 485w,http://ichef.bbci.co.uk/news/520/media/images/79309000/jpg/_79309377_79309376.jpg 520w,http://ichef.bbci.co.uk/news/555/media/images/79309000/jpg/_79309377_79309376.jpg 555w,http://ichef.bbci.co.uk/news/590/media/images/79309000/jpg/_79309377_79309376.jpg 590w,http://ichef.bbci.co.uk/news/625/media/images/79309000/jpg/_79309377_79309376.jpg 625w,http://ichef.bbci.co.uk/news/660/media/images/79309000/jpg/_79309377_79309376.jpg 660w,http://ichef.bbci.co.uk/news/695/media/images/79309000/jpg/_79309377_79309376.jpg 695w,http://ichef.bbci.co.uk/news/736/media/images/79309000/jpg/_79309377_79309376.jpg 736w,http://ichef.bbci.co.uk/news/768/media/images/79309000/jpg/_79309377_79309376.jpg 768w,http://ichef.bbci.co.uk/news/772/media/images/79309000/jpg/_79309377_79309376.jpg 772w,http://ichef.bbci.co.uk/news/800/media/images/79309000/jpg/_79309377_79309376.jpg 800w,http://ichef.bbci.co.uk/news/834/media/images/79309000/jpg/_79309377_79309376.jpg 834w,http://ichef.bbci.co.uk/news/872/media/images/79309000/jpg/_79309377_79309376.jpg 872w,http://ichef.bbci.co.uk/news/904/media/images/79309000/jpg/_79309377_79309376.jpg 904w,http://ichef.bbci.co.uk/news/936/media/images/79309000/jpg/_79309377_79309376.jpg 936w,http://ichef.bbci.co.uk/news/950/media/images/79309000/jpg/_79309377_79309376.jpg 950w,http://ichef.bbci.co.uk/news/976/media/images/79309000/jpg/_79309377_79309376.jpg 976w"
+       class="responsive-image__image js-image-replace"
+       alt="A Border Force officer checking passports at Terminal 2, Heathrow Airport in June">
+</div>
+
+<!-- sizes="(min-width: 976px) 976px,(min-width: 950px) 950px,(min-width: 936px) 936px,(min-width: 904px) 904px,(min-width: 872px) 872px,(min-width: 834px) 834px,(min-width: 800px) 800px,(min-width: 772px) 772px,(min-width: 768px) 768px,(min-width: 736px) 736px,(min-width: 695px) 695px,(min-width: 660px) 660px,(min-width: 625px) 625px,(min-width: 590px) 590px,(min-width: 555px) 555px,(min-width: 520px) 520px,(min-width: 485px) 485px,(min-width: 445px) 445px,(min-width: 410px) 410px,(min-width: 375px) 375px,(min-width: 340px) 340px,(min-width: 304px) 304px,(min-width: 270px) 270px,(min-width: 235px) 235px,(min-width: 200px) 200px,(min-width: 165px) 165px,(min-width: 130px) 130px,(min-width: 96px) 96px" -->
+
+<script>
+  document.querySelector('img').addEventListener('load', logImageSrc);
+  window.addEventListener('resize', logImageSrc);
+
+  function logImageSrc(){
+    console.log(document.querySelector('img').currentSrc);
+  }
+</script>
+</body>
+</html>

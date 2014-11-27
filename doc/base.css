@@ -1,0 +1,13 @@
+body {
+  background-color: black;
+  color: #fff;
+}
+
+.responsive-container {
+  background-color: #ff0;
+  max-width: 80vw;
+}
+
+.responsive-container img {
+  max-width: 100%;
+}

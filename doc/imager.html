@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>BBC News srcset responsive image</title>
+  <link rel="stylesheet" href="base.css" />
+</head>
+<body>
+
+<div class="responsive-container"></div>
+
+<script src="../node_modules/react/dist/JSXTransformer.js"></script>
+<script src="../dist/vendor.js"></script>
+<script src="../dist/bundle.js"></script>
+<script type="text/jsx">
+  /** @jsx React.DOM */
+  var React = require('react');
+  var container = document.querySelector('.responsive-container');
+  var Imager = imager.jsx;
+
+  var imgr = Imager({
+    availableWidths: [96, 130, 165, 200, 235, 270, 304, 340, 375, 410, 445, 485, 520, 555, 590, 625, 660, 695, 736, 768, 772, 800, 834, 872, 904, 936, 950, 976],
+    onResize: true
+  });
+
+  var img = (
+    <imgr src="http://ichef.bbci.co.uk/news/{width}/media/images/79309000/jpg/_79309377_79309376.jpg"
+    className="responsive-image__image js-image-replace"
+    alt="A Border Force officer checking passports at Terminal 2, Heathrow Airport in June" />);
+
+  React.render(img, container);
+</script>
+</body>
+</html>
