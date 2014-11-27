@@ -62,16 +62,14 @@ Clone the project and open the [demo.html page](demo/index.html) for live exampl
 
 ```js
 React.render(<ResponsiveImage src="http://placehold.it/{width}" />, container);
-</script>
 ```
 
 ## `<div style="background-image: ..." />` element
 
 ```js
-React.render(<ResponsiveImage src="http://placehold.it/{width}">
+React.render(<ResponsiveImage src="http://placehold.it/{width}x{height}">
   <h2>Tile title</h2>
 </ResponsiveImage>, container);
-</script>
 ```
 
 
