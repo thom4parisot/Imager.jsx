@@ -64,12 +64,26 @@ Clone the project and open the [demo.html page](demo/index.html) for live exampl
 React.render(<ResponsiveImage src="http://placehold.it/{width}" />, container);
 ```
 
+This is rendered as:
+
+```html
+<img src="http://placehold.it/736" class="image-replace" data-src="http://placehold.it/{width}" alt="">
+```
+
 ## `<div style="background-image: ..." />` element
 
 ```js
 React.render(<ResponsiveImage src="http://placehold.it/{width}x{height}">
   <h2>Tile title</h2>
 </ResponsiveImage>, container);
+```
+
+This is rendered as:
+
+```html
+<div style="background-image: url(http://placehold.it/375x640);" class="image-replace" data-src="http://placehold.it/{width}x{height}">
+  <h2>Tile title</h2>
+</div>
 ```
 
 
