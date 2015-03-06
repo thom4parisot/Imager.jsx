@@ -1,6 +1,6 @@
 {
   "name": "imager.jsx",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A React component for responsive images in desktop and mobile browsers. Featuring Imager.js.",
   "main": "index.js",
   "repository": {
