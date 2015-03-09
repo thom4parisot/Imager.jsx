@@ -9,9 +9,8 @@
   },
   "scripts": {
     "build": "npm run build-vendor && npm run build-bundle",
-    "build-vendor": "browserify -r react -r lodash.debounce -o dist/vendor.js",
+    "build-vendor": "browserify -r react -o dist/vendor.js",
     "build-bundle": "browserify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js",
-    "postinstall": "if [[ $NODE_ENV != 'production' ]]; then npm run build; fi",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "watchify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js"
   },
@@ -42,7 +41,6 @@
   },
   "devDependencies": {
     "browserify": "^6.3.2",
-    "lodash.debounce": "^2.4.1",
     "reactify": "^0.17.1",
     "watchify": "^2.1.1"
   }
