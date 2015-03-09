@@ -16,8 +16,10 @@ npm i --save imager.jsx
 If you want to generate a static artifact, clone the repository and run the following commands:
 
 ```bash
+git clone https://github.com/oncletom/Imager.jsx.git imager.jsx && cd imager.jsx
 npm install
 npm run build
+open demo/index.html
 ```
 
 # Usage
