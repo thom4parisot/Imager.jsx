@@ -2,7 +2,7 @@
   "name": "imager.jsx",
   "version": "1.1.2",
   "description": "A React component for responsive images in desktop and mobile browsers. Featuring Imager.js.",
-  "main": "index.js",
+  "main": "./src/imager.jsx",
   "repository": {
     "type": "git",
     "url": "https://github.com/oncletom/Imager.jsx.git"
