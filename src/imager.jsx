@@ -37,7 +37,6 @@ module.exports = function (config) {
     propTypes: {
       // mandatory props
       src: React.PropTypes.string,
-      'background-src': React.PropTypes.string,
       // optional props
       lowSrc: React.PropTypes.string,
       alt: React.PropTypes.string,
