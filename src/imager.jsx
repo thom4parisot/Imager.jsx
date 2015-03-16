@@ -85,11 +85,28 @@ module.exports = function (config) {
     getLowSrc: function () {
       var lowSrc = this.props.src;
 
+      // use the defined low src property
       if (this.props.lowSrc) {
         lowSrc = this.props.lowSrc;
       }
+      /*// use imagers gif src
       else if (imgr) {
         lowSrc = imgr.gif.src;
+      }*/
+      // use the smallest width and replace it in the default src property
+      else {
+        var smallestWidth = -1;
+
+        if (config.availableWidths && config.availableWidths.length) {
+          for (var i = 0, l = config.availableWidths.length; i < l; i++) {
+            var width = config.availableWidths[i];
+            if (smallestWidth === -1 || smallestWidth > width) {
+              smallestWidth = width;
+            }
+          }
+        }
+
+        lowSrc = this.props.src.replace('{width}', smallestWidth);
       }
 
       return lowSrc;
