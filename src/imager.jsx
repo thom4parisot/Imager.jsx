@@ -89,24 +89,36 @@ module.exports = function (config) {
       if (this.props.lowSrc) {
         lowSrc = this.props.lowSrc;
       }
-      /*// use imagers gif src
-      else if (imgr) {
-        lowSrc = imgr.gif.src;
-      }*/
       // use the smallest width and replace it in the default src property
       else {
         var smallestWidth = -1;
+        var replacement = '';
 
-        if (config.availableWidths && config.availableWidths.length) {
-          for (var i = 0, l = config.availableWidths.length; i < l; i++) {
-            var width = config.availableWidths[i];
-            if (smallestWidth === -1 || smallestWidth > width) {
-              smallestWidth = width;
+        if (config.availableWidths) {
+          if (config.availableWidths.constructor === Array && config.availableWidths.length) {
+            for (var i = 0, l = config.availableWidths.length; i < l; i++) {
+              var width = config.availableWidths[i];
+              if (smallestWidth === -1 || smallestWidth > width) {
+                smallestWidth = width;
+                replacement = width;
+              }
+            }
+          }
+          else if (config.availableWidths !== null && typeof config.availableWidths === 'object') {
+            var keys = Object.keys(config.availableWidths);
+
+            for (var i = 0, l = keys.length; i < l; i++) {
+              var width = parseInt(keys[i], 10);
+              
+              if (smallestWidth === -1 || smallestWidth > width) {
+                smallestWidth = width;
+                replacement = config.availableWidths[width];
+              }
             }
           }
         }
 
-        lowSrc = this.props.src.replace('{width}', smallestWidth);
+        lowSrc = this.props.src.replace('{width}', replacement);
       }
 
       return lowSrc;
