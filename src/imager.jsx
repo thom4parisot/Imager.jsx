@@ -1,7 +1,10 @@
 'use strict';
 
+var isBrowser = (typeof window !== 'undefined');
+
 var React = require('react');
-var Imager = require('imager.js');
+
+var Imager = isBrowser ? require('imager.js') : null;
 
 /**
  * Imager.jsx Component Factory
@@ -20,9 +23,9 @@ module.exports = function (config) {
 
   // Where the magic happens.
   // A 'blind' Imager instance shared by all the rendered components.
-  var imgr = new Imager([], imagerConfig);
+  var imgr = isBrowser ? new Imager([], imagerConfig) : null;
 
-  if (onResize) {
+  if (isBrowser && onResize) {
     Imager.addEvent(window, 'resize', Imager.debounce(function(){
       Imager.applyEach(imagesCache, function(component){
         component.refreshImageWidth();
@@ -34,8 +37,8 @@ module.exports = function (config) {
     propTypes: {
       // mandatory props
       src: React.PropTypes.string,
-      'background-src': React.PropTypes.string,
       // optional props
+      lowSrc: React.PropTypes.string,
       alt: React.PropTypes.string,
       className: React.PropTypes.string
     },
@@ -43,7 +46,7 @@ module.exports = function (config) {
     componentDidMount: function () {
       this.refreshImageWidth();
 
-      if (onResize) {
+      if (isBrowser && onResize) {
         imagesCache.push(this);
       }
     },
@@ -54,7 +57,7 @@ module.exports = function (config) {
     componentWillUnmount: function () {
       var self = this;
 
-      if (onResize) {
+      if (isBrowser && onResize) {
         imagesCache = Imager.applyEach(imagesCache, function(component){
           return component === self ? null : component;
         }).filter(function(c){ return c; });
@@ -67,9 +70,9 @@ module.exports = function (config) {
 
     getDefaultProps: function () {
       return {
-        className: imgr.className,
-        src: imgr.gif.src,
-        alt: imgr.gif.src
+        className: imgr ? imgr.className : 'image-replace', // add imagers className to server side rendering. It's kind of dirty but fixes Reacts invalid checksum warning for now.
+        src: imgr ? imgr.gif.src : '',
+        alt: imgr ? imgr.gif.src : '' // <-- why are you using the src as alt attribute here?
       };
     },
 
@@ -79,9 +82,51 @@ module.exports = function (config) {
       }
     },
 
+    getLowSrc: function () {
+      var lowSrc = this.props.src;
+
+      // use the defined low src property
+      if (this.props.lowSrc) {
+        lowSrc = this.props.lowSrc;
+      }
+      // use the smallest width and replace it in the default src property
+      else {
+        var smallestWidth = -1;
+        var replacement = '';
+
+        if (config.availableWidths) {
+          if (config.availableWidths.constructor === Array && config.availableWidths.length) {
+            for (var i = 0, l = config.availableWidths.length; i < l; i++) {
+              var width = config.availableWidths[i];
+              if (smallestWidth === -1 || smallestWidth > width) {
+                smallestWidth = width;
+                replacement = width;
+              }
+            }
+          }
+          else if (config.availableWidths !== null && typeof config.availableWidths === 'object') {
+            var keys = Object.keys(config.availableWidths);
+
+            for (var i = 0, l = keys.length; i < l; i++) {
+              var width = parseInt(keys[i], 10);
+              
+              if (smallestWidth === -1 || smallestWidth > width) {
+                smallestWidth = width;
+                replacement = config.availableWidths[width];
+              }
+            }
+          }
+        }
+
+        lowSrc = this.props.src.replace('{width}', replacement);
+      }
+
+      return lowSrc;
+    },
+
     getImageSrc: function () {
       if (!this.state.width) {
-        return imgr.gif.src;
+        return this.getLowSrc();
       }
 
       return imgr.changeImageSrcToUseNewImageDimensions(this.props.src, this.state.width).replace('{height}', this.state.height);
