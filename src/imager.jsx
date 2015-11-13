@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Imager = require('imager.js');
 
 /**
@@ -88,7 +89,7 @@ module.exports = function (config) {
     },
 
     refreshImageWidth: function () {
-      var node = this.getDOMNode();
+      var node = ReactDOM.findDOMNode(this);
       var height = node.offsetHeight;
       var width = imgr.determineAppropriateResolution(node);
 
