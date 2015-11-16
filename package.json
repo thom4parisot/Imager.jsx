@@ -15,7 +15,9 @@
     "watch": "watchify src/imager.jsx -s imager.jsx -o dist/bundle.js"
   },
   "browserify": {
-    "transform": ["babelify"]
+    "transform": [
+      ["babelify", { "presets": ["es2015", "react"] }]
+    ]
   },
   "keywords": [
     "imager",
