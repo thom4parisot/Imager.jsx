@@ -9,20 +9,14 @@
   },
   "scripts": {
     "build": "npm run build-vendor && npm run build-bundle",
-    "build-vendor": "browserify -r react -o dist/vendor.js",
-    "build-bundle": "browserify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js",
+    "build-vendor": "browserify -o dist/vendor.js",
+    "build-bundle": "browserify src/imager.jsx -s imager.jsx -o dist/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify -x react src/imager.jsx -s imager.jsx -o dist/bundle.js"
+    "watch": "watchify src/imager.jsx -s imager.jsx -o dist/bundle.js"
   },
   "browserify": {
     "transform": [
-      [
-        "reactify",
-        {
-          "es6": true,
-          "target": "es5"
-        }
-      ]
+      ["babelify", { "presets": ["es2015", "react"] }]
     ]
   },
   "keywords": [
@@ -36,12 +30,15 @@
   "author": "Thomas Parisot (https://oncletom.io)",
   "license": "MIT",
   "dependencies": {
-    "imager.js": "^0.4.0",
-    "react": "^0.12.1"
+    "imager.js": "^0.5.0",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2"
   },
   "devDependencies": {
-    "browserify": "^6.3.2",
-    "reactify": "^0.17.1",
-    "watchify": "^2.1.1"
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "watchify": "^3.6.0"
   }
 }
